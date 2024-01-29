@@ -1,27 +1,43 @@
 class funciones():
-    def __init__(self, lista_num):
-        self.lista= lista_num 
+    def __init__(self, lista_numeros):
+        if (type(lista_numeros) != list):
+            self.lista = []
+            raise ValueError('Se ha creado una lista vacía. Se esperaba una lista de números enteros')  
+        else:
+            self.lista = lista_numeros
         
     def verifica_primo(self):
+        lista_primo=[]
         for i in self.lista:
             if (self.__verifica_primo(i)):
-               print('el elemento',i, ' es un número primo')
+               lista_primo.append(True)
             else:
-               print('el elemento',i,'no es primo')
+               lista_primo.append(False)
+        return lista_primo
             
     def grados(self,origen, destino):
+        parametro=['Celcius','Farenheit','Kelvin']
+        lista_conversión=[]
+        if str(origen) not in parametro:
+            print('Los parametros esperados deben ser ',parametro)
+            return lista_conversión
+        if str(destino) not in parametro:
+            print('Los parametros esperados deben ser ',parametro)
+            return lista_conversión
         for i in self.lista:
-            print(i,'grados','son',origen,self.__grados(i,origen,destino),'grados',destino)
+            lista_conversión.append(self.__grados(i,origen,destino))
+            return lista_conversión
             
     def factorial(self):
+        lista_factorial=[]
         for i in self.lista:
-            print('el factortial de ',i,'es',self.__factorial(i))
-        
+            lista_factorial.append(self.__factorial(i))
+            return lista_factorial
     
     def __verifica_primo(self, numero):
         es_primo=True
         for i in range(2,numero):
-            if numero%i ==0:
+            if numero % i ==0:
               es_primo=False
             break   
         return es_primo
@@ -51,6 +67,7 @@ class funciones():
         return moda, maximo
     
     def __grados (self,numero,tipo1,tipo2):
+        valor= None
         if tipo1 == 'Celcius':
            if tipo2== 'Celcius':
             valor=numero
@@ -83,10 +100,10 @@ class funciones():
         return  valor
     
     def __factorial(self,numero):
-        while numero <=0:
-            print(' No se puede operar con el número ingresado')
-            break
-        if numero>1:
-             numero=numero*self.factorial(numero-1)
-        return numero
-        
+       if(type(numero) != int):
+            return 'El numero debe ser un entero'
+       if(numero < 0):
+            return 'El numero debe ser pisitivo'
+       if (numero > 1):
+            numero = numero * self.__factorial(numero - 1)
+       return numero

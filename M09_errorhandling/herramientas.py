@@ -34,10 +34,10 @@ class Herramientas:
             lista_factorial.append(self.__factorial(i))
         return lista_factorial
 
-    def __verifica_primo(self, nro):
+    def __verifica_primo(self, numero):
         es_primo = True
-        for i in range(2, nro):
-            if nro % i == 0:
+        for i in range(2, numero):
+            if numero % i == 0:
                 es_primo = False
                 break
         return es_primo
